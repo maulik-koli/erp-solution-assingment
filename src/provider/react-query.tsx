@@ -1,8 +1,21 @@
 'use client'
 import React from 'react'
-import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { showToast } from '@lib/sonner-toast';
 
 const queryClient = new QueryClient({
+    mutationCache: new MutationCache({
+        onSuccess: (_data, _variables, _context, mutation) => {
+            showToast.success(mutation.meta?.successMessage as string);
+        },
+        onError: (error: any, _variables, _context, mutation) => {
+            if (!error?.message) {
+                return showToast.error(mutation.meta?.errorMessage as string);
+            }
+            showToast.error(error?.message as string);
+        },
+    }),
+
     defaultOptions: {
         queries: {
             retry: false,
