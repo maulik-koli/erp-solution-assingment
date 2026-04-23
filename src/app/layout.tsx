@@ -5,6 +5,7 @@ import { Inter } from 'next/font/google';
 import "@/style/globals.css";
 import { cn } from "@/lib/utils";
 import AppProvider from "@/provider";
+import { Toaster } from "@ui/sonner";
 
 const inter = Inter({
   subsets: ['latin'],
@@ -30,6 +31,7 @@ export default function RootLayout({
       <body className={cn(inter.className, "min-h-full flex flex-col")}>
         <AppProvider>
           {children}
+          <Toaster position="top-right" />
         </AppProvider>
       </body>
     </html>
