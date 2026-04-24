@@ -8,9 +8,44 @@ import {
     Mail,
     LockKeyhole,
     Eye,
-    User
+    User,
+    LayoutDashboard,
+    ShoppingCart,
+    Package,
+    FileQuestion,
+    ClipboardList,
+    RotateCcw,
+    Receipt,
+    BarChart3,
+    Menu,
+    ChevronLeft,
+    ChevronRight,
+    Bell,
+    Search,
+    Settings,
+    LogOut,
+    ChevronDown,
+    Truck,
+    Warehouse,
+    Users,
+    House,
+    ArrowLeft,
+    CircleDollarSign,
+    type LucideIcon
 } from "lucide-react";
 
+import { CartIcon, FolderIcon, GraphIcon, MenuIcon, MoneyIcon, PackageIcon } from "./custom/sidebar-icon"
+import { LogoIcon } from "./custom/logo";
+
+export const CUSTOM_ICON_MAP = {
+    logo: LogoIcon,
+    folder: FolderIcon,
+    graph: GraphIcon,
+    menu: MenuIcon,
+    money: MoneyIcon,
+    package: PackageIcon,
+    cart: CartIcon,
+}
 
 
 export const LUCIDE_ICON_MAP = {
@@ -23,5 +58,29 @@ export const LUCIDE_ICON_MAP = {
     Mail,
     LockKeyhole,
     Eye,
-    User
+    User,
+    LayoutDashboard,
+    ShoppingCart,
+    Package,
+    FileQuestion,
+    ClipboardList,
+    RotateCcw,
+    Receipt,
+    BarChart3,
+    Menu,
+    ChevronLeft,
+    ChevronRight,
+    Bell,
+    Search,
+    Settings,
+    LogOut,
+    ChevronDown,
+    Truck,
+    Warehouse,
+    Users,
+    CircleDollarSign,
+    House,
+    ArrowLeft,
 }
+
+export type { LucideIcon }
