@@ -15,7 +15,7 @@ export interface SidebarSection {
 
 
 export const RAIL_ITEMS: NavItem[] = [
-    { icon: "folder", label: "Dashboard", href: "/dashboard" },
+    { icon: "folder", label: "Dashboard", href: "/" },
     { icon: "money", label: "Wallet", href: "/wallet" },
     { icon: "package", label: "Inventory", href: "/inventory" },
     { icon: "cart", label: "Purchase", href: "/purchase" },
@@ -48,7 +48,7 @@ export function getRailHref(railHref: string): string {
 }
 
 export function getSidebarForPath(pathname: string): SidebarSection | null {
-    const match = RAIL_ITEMS.find((r) => pathname.startsWith(r.href));
+    const match = RAIL_ITEMS.find((r) => r.href === '/' ? pathname === '/' : pathname.startsWith(r.href));
     if (!match) return null;
     return SIDEBAR_ROUTES[match.href] ?? null;
 }

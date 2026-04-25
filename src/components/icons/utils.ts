@@ -31,7 +31,11 @@ import {
     House,
     ArrowLeft,
     CircleDollarSign,
-    type LucideIcon
+    Check,
+    Ban,
+    ArrowUpDown,
+    AlertTriangle,
+    Inbox,
 } from "lucide-react";
 
 import { CartIcon, FolderIcon, GraphIcon, MenuIcon, MoneyIcon, PackageIcon } from "./custom/sidebar-icon"
@@ -81,6 +85,9 @@ export const LUCIDE_ICON_MAP = {
     CircleDollarSign,
     House,
     ArrowLeft,
+    Check,
+    Ban,
+    ArrowUpDown,
+    AlertTriangle,
+    Inbox,
 }
-
-export type { LucideIcon }

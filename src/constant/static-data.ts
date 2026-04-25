@@ -8,5 +8,4 @@ export const LOGIN_SIDE_SECTION_DATA: { icon: IconType, text: string }[] = [
     { icon: "ChartColumnBig", text: "Analyze vendor activity and operational performance" },
     { icon: "ShieldCheck", text: "Maintain vendor agreements and ensure compliance standards" },
     { icon: "Database", text: "Access all vendor information in one centralized system" }
-
 ]

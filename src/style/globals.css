@@ -30,7 +30,6 @@
   --color-destructive: var(--destructive, oklch(0.577 0.245 27.325));
   --color-muted-foreground: var(--muted-foreground, oklch(0.6234 0 0));
   --color-accent: var(--accent, oklch(0.97 0 0));
-  --color-muted-foreground: var(--muted-foreground, oklch(0.556 0 0));
   --color-muted: var(--muted, oklch(0.97 0 0));
   --color-secondary-foreground: var(--secondary-foreground, oklch(0.205 0 0));
   --color-secondary: var(--secondary, oklch(0.97 0 0));
@@ -130,4 +129,41 @@
   html {
     @apply font-sans;
   }
+}
+
+
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: oklch(0.8 0 0) transparent;
+}
+
+.custom-scrollbar::-webkit-scrollbar {
+  height: 6px;
+  width: 6px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: oklch(0.8 0 0);
+  border-radius: 999px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.7 0 0);
+}
+
+.dark .custom-scrollbar {
+  scrollbar-color: oklch(0.4 0 0) transparent;
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: oklch(0.4 0 0);
+}
+
+.dark .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: oklch(0.5 0 0);
 }

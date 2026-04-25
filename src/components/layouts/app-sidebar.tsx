@@ -60,11 +60,7 @@ function IconRail({ onToggle }: IconRailProps) {
 
             <nav className="flex flex-1 flex-col items-center gap-1">
                 {RAIL_ITEMS.map((item) => {
-                    Log('pathname', {
-                        pathname,
-                        href: item.href
-                    })
-                    const isActive = pathname.startsWith(item.href)
+                    const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
                     return (
                         <Tooltip key={item.href}>
                             <TooltipTrigger asChild>
@@ -80,7 +76,7 @@ function IconRail({ onToggle }: IconRailProps) {
                                     <Icon name={item.icon} className="size-5" />
                                 </Link>
                             </TooltipTrigger>
-                            <TooltipContent side="bottom" sideOffset={8}>
+                            <TooltipContent side="right" sideOffset={8}>
                                 {item.label}
                             </TooltipContent>
                         </Tooltip>

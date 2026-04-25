@@ -23,10 +23,10 @@ const AdminLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
                 <Header sidebarOffset={sidebarOffset} />
 
                 <main
-                    className="pt-16 transition-[margin-left] duration-300 ease-in-out"
+                    className="rounded-tl-xl bg-background pt-16 transition-[margin-left] duration-300 ease-in-out"
                     style={{ marginLeft: `${sidebarOffset}px` }}
                 >
-                    <div className="p-6">
+                    <div className="rounded-tl-xl p-6">
                         {children}
                     </div>
                 </main>
