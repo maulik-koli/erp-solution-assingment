@@ -1,7 +1,11 @@
 "use client"
 import React from 'react'
+import { useRouter } from 'next/navigation'
 import { useForm, Controller } from 'react-hook-form'
 import { zodResolver } from "@hookform/resolvers/zod"
+import { useLogin } from '../api/hook'
+import { useToast } from '@hooks/use-toast'
+import { DEFAULT_ROUTE } from '@constant/nav-routes'
 import { defaultLoginFormValue, LoginFormType, loginSchema } from '../utils/schemas'
 
 import {
@@ -13,9 +17,6 @@ import {
 } from "@ui/card"
 import { Button } from '@ui/button'
 import { Input } from '@form/input'
-import { useLogin } from '../api/hook'
-import { useToast } from '@hooks/useToast'
-import { useRouter } from 'next/navigation'
 
 
 const LoginForm: React.FC = () => {
@@ -30,7 +31,7 @@ const LoginForm: React.FC = () => {
     const onSubmit = (data: LoginFormType) => {
         mutate(data, {
             onSuccess: () => {
-                router.push('/');
+                router.push(DEFAULT_ROUTE);
             }
         })
     }

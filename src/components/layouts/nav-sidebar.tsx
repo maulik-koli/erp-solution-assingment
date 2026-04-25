@@ -53,7 +53,7 @@ const NavSidebar: React.FC<NavSidebarProps> = ({ isOpen }) => {
 
                             <ul className="flex flex-col gap-0.5">
                                 {sidebar.items.map((item) => {
-                                    const isActive = pathname === item.href
+                                    const isActive = item.href === "/" ? pathname === "/" : pathname === item.href;
                                     return (
                                         <li key={item.href}>
                                             <Link
