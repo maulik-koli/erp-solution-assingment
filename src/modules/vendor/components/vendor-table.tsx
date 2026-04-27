@@ -8,7 +8,7 @@ import {
     type SortingState,
 } from '@tanstack/react-table'
 import { VendorsListResponse } from '../api/type'
-import { vendorColumns } from '../utils/vendor-columns'
+import { vendorColumns } from '../utils/get-vendor-columns'
 import { cn } from '@lib/utils'
 import {
     Table,

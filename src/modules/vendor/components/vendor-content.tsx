@@ -1,8 +1,8 @@
 'use client'
 import React, { useState } from 'react'
-import { useGetVendorList } from '../api/hook'
+import { useGetVendorList } from '../api/query'
 import { useDebounce } from '@hooks/use-debounce'
-import { VendorStatus } from '../api/type'
+import { VendorStatus } from '@/types/enums'
 
 import { Card, CardContent, CardHeader } from '@ui/card'
 import VendorFilter from './vendor-filter'

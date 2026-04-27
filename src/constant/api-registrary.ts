@@ -3,6 +3,7 @@
 export const QUERY_REGISTRY = {
     getVendorList: "vendor-list",
     getVendorCount: "vendor-count",
+    getOptionsData: "options-data",
 }
 
 export const MUTATION_REGISTRY = {

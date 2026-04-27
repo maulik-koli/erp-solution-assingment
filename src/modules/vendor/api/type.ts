@@ -1,5 +1,8 @@
+import { VendorStatus } from "@/types/enums";
 
-export type VendorStatus = "active" | "disabled" | "all"
+export type VendorTabs = 'details' | 'tax' | 'address' | 'account'
+
+
 
 export type VendorListParams = {
     search: string,
@@ -32,3 +35,24 @@ export type VendorListItem = {
 };
 
 export type VendorsListResponse = VendorListItem[]
+
+
+// ---------- Options APIs ----------
+export type SearchLinkOptionKey = 
+    'supplier_group'
+    | 'price_list'
+    | 'currency'
+    | 'bank_account'
+    | 'tax_category'
+    | 'tax_withholding_category'
+    | 'vendor_addresses'
+    | 'vendor_contact'
+    | 'company'
+    | 'default_account';
+
+
+export type OptionsItemsResponse = {
+    value: string,
+    description: string,
+    label?: string
+}[]

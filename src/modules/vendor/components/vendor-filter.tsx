@@ -1,7 +1,11 @@
 import React from 'react'
+import { VENDOR_STATUS_OPTIONS } from '@constant/select-options'
+import { VendorStatus } from '@/types/enums'
+
+import DialogComponent from '@components/common/dialog-com'
 import { Input, SelectField } from '@form/index'
 import { Button } from '@ui/button'
-import { VendorStatus } from '../api/type'
+import VendorForm from './vendor-form'
 
 interface VendorFilterProps {
     searchValue: string,
@@ -10,14 +14,9 @@ interface VendorFilterProps {
     onFilterChnage: (status: VendorStatus) => void
 }
 
-const VENDOR_STATUS_OPTIONS: { label: string, value: VendorStatus }[] = [
-    { label: "All", value: "all" },
-    { label: "Active", value: "active" },
-    { label: "Disabled", value: "disabled" },
-]
-
 
 const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, filterValue, onFilterChnage, searchValue }) => {
+
     return (
         <div className='flex items-center gap-3'>
             <Input
@@ -35,7 +34,16 @@ const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, filterValue,
                     options={VENDOR_STATUS_OPTIONS}
                     containerClass='h-9'
                 />
-                <Button className='h-9'>Create Vendor</Button>
+                <DialogComponent
+                    trigger={
+                        <Button className='h-9'>Create Vendor</Button>
+                    }
+                    title="New Supplier"
+                    description="Fill in the details below to create a new vendor in the system."
+                    className='w-[calc(100vw-16rem)]'
+                >
+                    <VendorForm />
+                </DialogComponent>
             </div>
         </div>
     )

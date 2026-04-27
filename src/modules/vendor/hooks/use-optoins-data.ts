@@ -1,0 +1,6 @@
+
+const useOptionsData = () => {
+    const detailsQueries = {
+        
+    }
+}
