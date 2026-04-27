@@ -16,7 +16,7 @@ import {
     CardTitle,
 } from "@ui/card"
 import { Button } from '@ui/button'
-import { Input } from '@form/input'
+import Input from '@form/input'
 
 
 const LoginForm: React.FC = () => {

@@ -36,6 +36,9 @@ import {
     ArrowUpDown,
     AlertTriangle,
     Inbox,
+    CheckIcon,
+    Trash2,
+    Plus,
 } from "lucide-react";
 
 import { CartIcon, FolderIcon, GraphIcon, MenuIcon, MoneyIcon, PackageIcon } from "./custom/sidebar-icon"
@@ -90,4 +93,7 @@ export const LUCIDE_ICON_MAP = {
     ArrowUpDown,
     AlertTriangle,
     Inbox,
+    CheckIcon,
+    Trash2,
+    Plus
 }

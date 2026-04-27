@@ -1,6 +1,6 @@
 import * as React from "react"
 import { cn } from "@/lib/utils"
-import { Field, FieldDescription, FieldLabel } from "@ui/field"
+import { Field, FieldError, FieldLabel } from "@ui/field"
 import Icon, { IconType } from "@/components/icons";
 
 interface InputProps extends React.ComponentProps<"input"> {
@@ -42,9 +42,9 @@ const Input: React.FC<InputProps> = ({
           </div>
         )}
       </div>
-      {errorMessage &&  <FieldDescription className="text-destructive">{errorMessage}</FieldDescription>}
+      {errorMessage &&  <FieldError>{errorMessage}</FieldError>}
     </Field>
   )
 } 
 
-export { Input }
+export default Input
