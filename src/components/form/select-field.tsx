@@ -1,7 +1,7 @@
 'use client'
 import React from 'react'
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Field, FieldDescription, FieldLabel } from '@/components/ui/field';
+import { Field, FieldDescription, FieldError, FieldLabel } from '@/components/ui/field';
 import { cn } from '@/lib/utils';
 
 export interface SelectFieldProps extends Omit<React.ComponentProps<typeof Select>, 'onValueChange'> {
@@ -13,6 +13,7 @@ export interface SelectFieldProps extends Omit<React.ComponentProps<typeof Selec
     label?: string;
     placeholder?: string;
     description?: string;
+    errorMessage?: string;
     emptyMessage?: string
 
     containerClass?: string;
@@ -27,6 +28,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
     placeholder, 
     options,
     description,
+    errorMessage,
     emptyMessage,
 
     containerClass, 
@@ -45,7 +47,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
                 </SelectTrigger>
                 <SelectContent position='popper'>
                     {isEmpty ? (
-                        <SelectItem value='empty' className='cursor-pointer flex justify-center items-center' disabled>
+                        <SelectItem value='empty' className={cn('cursor-pointer flex justify-center items-center', itemClass)} disabled>
                             {emptyMessage || `No ${label || ''} available`}
                         </SelectItem>
                     ) : (
@@ -62,6 +64,7 @@ const SelectField: React.FC<SelectFieldProps> = ({
                 </SelectContent>
             </Select>
             {description && <FieldDescription>{description}</FieldDescription>}
+            {errorMessage &&  <FieldError>{errorMessage}</FieldError>}
         </Field>
     )
 }

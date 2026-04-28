@@ -16,46 +16,49 @@ const DetailsSection: React.FC = () => {
                 <Controller
                     name='supplier_name'
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <Input
                             {...field}
                             type='text'
                             label='Supplier Name'
                             placeholder='Enter Supplier Name'
                             className='h-10 min-w-80'
+                            errorMessage={fieldState.error?.message}
                         />
                     )}
                 />
                 <Controller
                     name='supplier_group'
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <OptionsSelector
                             type='supplier_group' 
                             value={field.value}
                             onChange={field.onChange}
                             placeholder='Select Supplier Group'
                             label='Supplier Group'
+                            errorMessage={fieldState.error?.message}
                         />
                     )}
                 />
                 <Controller
                     name='country'
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState}) => (
                         <Input
                             {...field}
                             type='text'
                             label='Country'
                             placeholder='Enter Country'
                             className='h-10 min-w-80'
+                            errorMessage={fieldState.error?.message}
                         />
                     )}
                 />
                 <Controller
                     name='supplier_type'
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <SelectField 
                             value={field.value}
                             onChange={field.onChange}
@@ -63,6 +66,7 @@ const DetailsSection: React.FC = () => {
                             placeholder='Select Supplier Type'
                             label='Supplier Type'
                             triggerClass='h-10! min-w-80'
+                            errorMessage={fieldState.error?.message}
                         />
                     )}
                 />
@@ -74,8 +78,8 @@ const DetailsSection: React.FC = () => {
                     control={control}
                     render={({ field }) => (
                         <Checkbox 
-                            {...field}
-                            onChange={field.onChange}
+                            checked={field.value === 1 ? true : false}
+                            onCheckedChange={(value) => field.onChange(value ? 1 : 0)}
                             label='Is Transporter?'
                         />
                     )}
@@ -87,39 +91,42 @@ const DetailsSection: React.FC = () => {
                     <Controller
                         name='default_currency'
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, fieldState }) => (
                             <OptionsSelector
                                 type='currency' 
                                 value={field.value}
                                 onChange={field.onChange}
                                 placeholder='Select Billing Currency'
                                 label='Billing Currency'
+                                errorMessage={fieldState.error?.message}
                             />
                         )}
                     />
                     <Controller
                         name='default_price_list'
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, fieldState }) => (
                             <OptionsSelector
                                 type='price_list' 
                                 value={field.value}
                                 onChange={field.onChange}
                                 placeholder='Select Price List'
                                 label='Price List'
+                                errorMessage={fieldState.error?.message}
                             />
                         )}
                     />
                     <Controller
                         name='default_bank_account'
                         control={control}
-                        render={({ field }) => (
+                        render={({ field, fieldState }) => (
                             <OptionsSelector
-                                type='price_list' 
+                                type='bank_account' 
                                 value={field.value}
                                 onChange={field.onChange}
                                 placeholder='Select Company Bank Account'
                                 label='Default Company Bank Account'
+                                errorMessage={fieldState.error?.message}
                             />
                         )}
                     />
@@ -128,7 +135,7 @@ const DetailsSection: React.FC = () => {
                         name='is_internal_supplier'
                         control={control}
                         render={({ field }) => (
-                            <div className='bg-green-300/25 rounded-lg p-3'>
+                            <div className='bg-muted-foreground/5 rounded-lg p-3'>
                                 <Switch
                                     checked={field.value === 1 ? true : false}
                                     onCheckedChange={(value) => field.onChange(value ? 1 : 0)}
