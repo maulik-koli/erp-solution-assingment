@@ -15,26 +15,28 @@ const TaxSection: React.FC = () => {
             <Controller
                 name='tax_id'
                 control={control}
-                render={({ field }) => (
+                render={({ field, fieldState }) => (
                     <Input
                         {...field}
                         type='text'
                         label='Tax ID'
                         placeholder='Enter Tax ID'
                         className='h-10 min-w-80'
+                        errorMessage={fieldState.error?.message}
                     />
                 )}
             />
             <Controller
                 name='tax_category'
                 control={control}
-                render={({ field }) => (
+                render={({ field, fieldState }) => (
                     <OptionsSelector
                         type='tax_category' 
                         value={field.value}
                         onChange={field.onChange}
                         placeholder='Select Tax Category'
                         label='Tax Category'
+                        errorMessage={fieldState.error?.message}
                     />
                 )}
             />
@@ -42,13 +44,14 @@ const TaxSection: React.FC = () => {
             <Controller
                 name='tax_withholding_category'
                 control={control}
-                render={({ field }) => (
+                render={({ field, fieldState }) => (
                     <OptionsSelector
                         type='tax_withholding_category' 
                         value={field.value}
                         onChange={field.onChange}
                         placeholder='Select Tax Withholding Category'
                         label='Tax Withholding Category'
+                        errorMessage={fieldState.error?.message}
                     />
                 )}
             />

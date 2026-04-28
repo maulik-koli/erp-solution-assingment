@@ -14,7 +14,7 @@ const AddressSection: React.FC = () => {
                 <Controller
                     name='supplier_primary_address'
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <OptionsSelector
                             type='vendor_addresses'
                             value={field.value}
@@ -22,13 +22,14 @@ const AddressSection: React.FC = () => {
                             placeholder='Select Supplier Primary Address'
                             label='Supplier Primary Address'
                             description='Reselect, if the chosen address is edited after save'
+                            errorMessage={fieldState.error?.message}
                         />
                     )}
                 />
                 <Controller
                     name='supplier_primary_contact'
                     control={control}
-                    render={({ field }) => (
+                    render={({ field, fieldState }) => (
                         <OptionsSelector
                             type='vendor_contact'
                             value={field.value}
@@ -36,6 +37,7 @@ const AddressSection: React.FC = () => {
                             placeholder='Select Supplier Primary Contact'
                             label='Supplier Primary Contact'
                             description='Reselect, if the chosen contact is edited after save'
+                            errorMessage={fieldState.error?.message}
                         />
                     )}
                 />

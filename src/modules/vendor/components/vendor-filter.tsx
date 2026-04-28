@@ -1,11 +1,12 @@
-import React from 'react'
+'use client'
+import React, { useState } from 'react'
 import { VENDOR_STATUS_OPTIONS } from '@constant/select-options'
 import { VendorStatus } from '@/types/enums'
 
+import VendorForm from './vendor-form'
 import DialogComponent from '@components/common/dialog-com'
 import { Input, SelectField } from '@form/index'
 import { Button } from '@ui/button'
-import VendorForm from './vendor-form'
 
 interface VendorFilterProps {
     searchValue: string,
@@ -16,6 +17,7 @@ interface VendorFilterProps {
 
 
 const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, filterValue, onFilterChnage, searchValue }) => {
+    const [open, setOpen] = useState<boolean>(false);
 
     return (
         <div className='flex items-center gap-3'>
@@ -38,11 +40,13 @@ const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, filterValue,
                     trigger={
                         <Button className='h-9'>Create Vendor</Button>
                     }
+                    open={open}
+                    onOpenChange={(op) => setOpen(op)}
                     title="New Supplier"
                     description="Fill in the details below to create a new vendor in the system."
                     className='w-[calc(100vw-16rem)]'
                 >
-                    <VendorForm />
+                    <VendorForm onClose={setOpen} />
                 </DialogComponent>
             </div>
         </div>

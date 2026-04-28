@@ -1,7 +1,8 @@
 import api from "@lib/axios";
 import qs from "qs";
 import { ApiResponse } from "@/types/api-type";
-import { OptionsItemsResponse, SearchLinkOptionKey, VendorListParams, VendorsListAPIResponse, VendorsListResponse } from "./type";
+import { CreateSupplierResponse, CreateVendorPayload, OptionsItemsResponse, SearchLinkOptionKey, VendorListParams, VendorsListAPIResponse, VendorsListResponse } from "./type";
+import { VendorFormType } from "../utils/schemas";
 
 
 export const getVendorList = async ({ search, status }: VendorListParams): Promise<VendorsListResponse> => {
@@ -152,6 +153,7 @@ const SEACH_LINK_PAYLOAD_MAP: Record<SearchLinkOptionKey, any> = {
     }
 }
 
+
 export const getOptionsData = async (key: SearchLinkOptionKey): Promise<OptionsItemsResponse> => {
     const payload = qs.stringify({
         txt: "",
@@ -161,4 +163,42 @@ export const getOptionsData = async (key: SearchLinkOptionKey): Promise<OptionsI
 
     const res = await api.post<ApiResponse<OptionsItemsResponse>>("/api/method/frappe.desk.search.search_link", payload);
     return res.data.message
+}
+
+
+
+// ---------- Mutation APIs ----------
+
+export const createVendor = async (payload: VendorFormType): Promise<CreateSupplierResponse> => {
+    const data: CreateVendorPayload = {
+        doc: {
+            ...payload,
+            doctype: "Supplier",
+            __unsaved: 1,
+        },
+        action: "Save",
+    }
+
+    const apiPayload = qs.stringify({
+        doc: JSON.stringify({
+            ...data.doc,
+            companies: data.doc.companies.map((c) => ({
+                doctype: "Supplier Company",
+                company: c
+            })),
+
+            accounts: data.doc.accounts.map((a) => ({
+                doctype: "Supplier Account",
+                account: a
+            }))
+        }),
+        action: data.action,
+    })
+
+
+    const res = await api.post<CreateSupplierResponse>(
+        "/api/method/frappe.desk.form.save.savedocs",
+        apiPayload
+    )
+    return res.data
 }

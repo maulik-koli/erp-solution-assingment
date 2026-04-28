@@ -1,5 +1,6 @@
 import z from "zod";
 import { SUPPLIER_TYPES } from "@constant/select-options";
+import { VendorTabs } from "../api/type";
 
 
 export const vendorSchema = z.object({
@@ -41,3 +42,62 @@ export const vendorSchema = z.object({
 })
 
 export type VendorFormType = z.infer<typeof vendorSchema>;
+
+
+
+export const vendorDefaultValue: VendorFormType = {
+    supplier_name: "",
+    supplier_group: "",
+    country: "",
+    supplier_type: "Company",
+    is_transporter: 0,
+    default_currency: "",
+    default_price_list: "",
+    default_bank_account: "",
+    is_internal_supplier: 1,
+    tax_id: "",
+    tax_category: "",
+    tax_withholding_category: "",
+    supplier_primary_address: "",
+    supplier_primary_contact: "",
+    companies: [],
+    accounts: [],
+}
+
+
+export const TAB_FIELD_MAP: Record<VendorTabs, (keyof VendorFormType)[]> = {
+    details: [
+        "supplier_name",
+        "supplier_group",
+        "country",
+        "supplier_type",
+        "is_transporter",
+        "default_currency",
+        "default_price_list",
+        "default_bank_account",
+        "is_internal_supplier",
+    ],
+    tax: [
+        "tax_id",
+        "tax_category",
+        "tax_withholding_category",
+    ],
+    address: [
+        "supplier_primary_address",
+        "supplier_primary_contact",
+    ],
+    account: [
+        "companies",
+        "accounts",
+    ],
+};
+
+export const getTabFromField = (field?: string): VendorTabs | null => {
+    if (!field) return null;
+
+    return (
+        Object.entries(TAB_FIELD_MAP).find(([_, fields]) =>
+        fields.includes(field as keyof VendorFormType)
+        )?.[0] as VendorTabs || null
+    );
+};
