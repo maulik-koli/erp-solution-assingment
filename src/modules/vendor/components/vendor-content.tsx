@@ -2,7 +2,8 @@
 import React, { useState } from 'react'
 import { useGetVendorList } from '../api/query'
 import { useDebounce } from '@hooks/use-debounce'
-import { VendorStatus } from '@/types/enums'
+import { VendorSort } from '../api/type'
+import { useToast } from '@hooks/use-toast'
 
 import { Card, CardContent, CardHeader } from '@ui/card'
 import VendorFilter from './vendor-filter'
@@ -11,18 +12,20 @@ import TableSkeleton from '@components/common/table-skeleton'
 import ErrorBlock from '@components/common/error-block'
 
 // there is 16 field in the vendor item
-const VENDOR_TABLE_COLUMNS = 16
+const VENDOR_TABLE_COLUMNS = 15
 
 
 const VendorContent: React.FC = () => {
     const [search, setSearch] = useState<string>("")
-    const [filter, setFilter] = useState<VendorStatus>("all")
+    const [sort, setSort] = useState<VendorSort | undefined>(undefined)
+    const [open, setOpen] = useState<boolean>(false);
+    const toast = useToast()
 
     const searchQuery = useDebounce(search, 500);
 
     const { data, error, isLoading } = useGetVendorList({ 
         search: searchQuery,
-        status: filter
+        sort
     })
 
     const getContent = () => {
@@ -48,7 +51,9 @@ const VendorContent: React.FC = () => {
             )
         }
 
-        return <VendorTable vendors={data} />
+        return (
+            <VendorTable vendors={data} />
+        )
     }
 
 
@@ -60,9 +65,9 @@ const VendorContent: React.FC = () => {
             <CardContent className='flex flex-col gap-4'>
                 <VendorFilter
                     searchValue={search}
-                    filterValue={filter}
+                    sortValue={sort}
                     onSeachChnage={(search) => setSearch(search)}
-                    onFilterChnage={(filter) => setFilter(filter)}
+                    onSortChnage={(filter) => setSort(filter)}
                 />
                 {getContent()}
             </CardContent>

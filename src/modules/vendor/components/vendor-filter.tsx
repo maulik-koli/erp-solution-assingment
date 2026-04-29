@@ -1,7 +1,7 @@
 'use client'
 import React, { useState } from 'react'
-import { VENDOR_STATUS_OPTIONS } from '@constant/select-options'
-import { VendorStatus } from '@/types/enums'
+import { VendorSort } from '../api/type'
+import { VENDOR_SORT_OPTIONS } from '@constant/select-options'
 
 import VendorForm from './vendor-form'
 import DialogComponent from '@components/common/dialog-com'
@@ -10,31 +10,31 @@ import { Button } from '@ui/button'
 
 interface VendorFilterProps {
     searchValue: string,
-    filterValue: VendorStatus
+    sortValue: VendorSort | undefined
     onSeachChnage: (search: string) => void
-    onFilterChnage: (status: VendorStatus) => void
+    onSortChnage: (status: VendorSort) => void
 }
 
 
-const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, filterValue, onFilterChnage, searchValue }) => {
+const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, sortValue, onSortChnage, searchValue }) => {
     const [open, setOpen] = useState<boolean>(false);
 
     return (
         <div className='flex items-center gap-3'>
             <Input
                 leftIcon='Search'
-                placeholder='Search Vendors by name, code, contact...'
+                placeholder='Search Vendors by supplier name...'
                 className='h-9'
                 value={searchValue}
                 onChange={(e) => onSeachChnage(e.currentTarget.value)}
             />
             <div className='flex items-center justify-center gap-2'>
                 <SelectField
-                    value={filterValue}
-                    onChange={(val) => onFilterChnage(val as VendorStatus)}
-                    placeholder='Select Field'
-                    options={VENDOR_STATUS_OPTIONS}
-                    containerClass='h-9'
+                    value={sortValue}
+                    onChange={(val) => onSortChnage(val as VendorSort)}
+                    placeholder='Select Sort'
+                    options={VENDOR_SORT_OPTIONS}
+                    containerClass='h-9 min-w-50'
                 />
                 <DialogComponent
                     trigger={
@@ -46,7 +46,7 @@ const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, filterValue,
                     description="Fill in the details below to create a new vendor in the system."
                     className='w-[calc(100vw-16rem)]'
                 >
-                    <VendorForm onClose={setOpen} />
+                    <VendorForm onClose={setOpen} action='create' data={null} />
                 </DialogComponent>
             </div>
         </div>

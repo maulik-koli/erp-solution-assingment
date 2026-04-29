@@ -1,12 +1,17 @@
 import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form';
 import { VendorFormType } from '@modules/vendor/utils/schemas';
+import { VendorMutateType } from '@modules/vendor/api/type';
 
 import Input from '@form/input';
 import OptionsSelector from '../optoins-selector';
 
+interface TaxSectionProps {
+    action: VendorMutateType
+}
 
-const TaxSection: React.FC = () => {
+
+const TaxSection: React.FC<TaxSectionProps> = ({ action }) => {
     const { control } = useFormContext<VendorFormType>();
     
     
@@ -37,6 +42,7 @@ const TaxSection: React.FC = () => {
                         placeholder='Select Tax Category'
                         label='Tax Category'
                         errorMessage={fieldState.error?.message}
+                        disabled={action === "update"}
                     />
                 )}
             />
@@ -52,6 +58,7 @@ const TaxSection: React.FC = () => {
                         placeholder='Select Tax Withholding Category'
                         label='Tax Withholding Category'
                         errorMessage={fieldState.error?.message}
+                        disabled={action === "update"}
                     />
                 )}
             />

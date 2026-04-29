@@ -39,6 +39,7 @@ import {
     CheckIcon,
     Trash2,
     Plus,
+    PencilLine,
 } from "lucide-react";
 
 import { CartIcon, FolderIcon, GraphIcon, MenuIcon, MoneyIcon, PackageIcon } from "./custom/sidebar-icon"
@@ -95,5 +96,6 @@ export const LUCIDE_ICON_MAP = {
     Inbox,
     CheckIcon,
     Trash2,
-    Plus
+    Plus,
+    PencilLine
 }

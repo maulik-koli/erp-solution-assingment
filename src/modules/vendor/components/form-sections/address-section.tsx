@@ -1,10 +1,15 @@
 import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form';
 import { VendorFormType } from '@modules/vendor/utils/schemas';
+import { VendorMutateType } from '@modules/vendor/api/type';
 import OptionsSelector from '../optoins-selector';
 
+interface AddressSectionProps {
+    action: VendorMutateType
+}
 
-const AddressSection: React.FC = () => {
+
+const AddressSection: React.FC<AddressSectionProps> = ({ action }) => {
     const { control } = useFormContext<VendorFormType>();
 
     return (
@@ -23,6 +28,7 @@ const AddressSection: React.FC = () => {
                             label='Supplier Primary Address'
                             description='Reselect, if the chosen address is edited after save'
                             errorMessage={fieldState.error?.message}
+                            disabled={action === "update"}
                         />
                     )}
                 />
