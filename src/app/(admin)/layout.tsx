@@ -1,6 +1,7 @@
 "use client"
+import React, { useState } from "react"
+import { useIsMobile } from "@hooks/use-mobile"
 
-import React, { useEffect, useState } from "react"
 import { TooltipProvider } from "@ui/tooltip"
 import AppSidebar from "@/components/layouts/app-sidebar"
 import Header from "@/components/layouts/header"
@@ -11,23 +12,7 @@ const NAV_SIDEBAR_WIDTH = 220
 
 const AdminLayout: React.FC<React.PropsWithChildren> = ({ children }) => {
     const [isNavOpen, setIsNavOpen] = useState(true)
-    const [isMobile, setIsMobile] = useState(false)
-
-    useEffect(() => {
-        const mediaQuery = window.matchMedia("(max-width: 767px)")
-
-        const handleChange = () => {
-            setIsMobile(mediaQuery.matches)
-            if (mediaQuery.matches) {
-                setIsNavOpen(false)
-            }
-        }
-
-        handleChange()
-        mediaQuery.addEventListener("change", handleChange)
-
-        return () => mediaQuery.removeEventListener("change", handleChange)
-    }, [])
+    const isMobile = useIsMobile()
 
     const sidebarOffset = isMobile
         ? ICON_RAIL_WIDTH
