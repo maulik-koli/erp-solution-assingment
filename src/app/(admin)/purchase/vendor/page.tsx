@@ -1,14 +1,35 @@
 import React from 'react'
-import VendorCards from '@modules/vendor/components/vendor-cards'
-import VendorContent from '@modules/vendor/components/vendor-content'
+import dynamic from 'next/dynamic'
+import { Metadata } from 'next'
+import VendorCardsSkeleton from '@modules/vendor/components/vendor-cards-skeleton'
+import VendorContentSkeleton from '@modules/vendor/components/vendor-content-skeleton'
+
+const VendorCards = dynamic(
+    () => import('@modules/vendor/components/vendor-cards'),
+    {
+        loading: () => <VendorCardsSkeleton />,
+    },
+)
+
+const VendorContent = dynamic(
+    () => import('@modules/vendor/components/vendor-content'),
+    {
+        loading: () => <VendorContentSkeleton />,
+    },
+)
+
+export const metadata: Metadata = {
+    title: 'Vendor Management | Sterling Cloud',
+    description: 'Manage and control all vendor operations in Sterling Cloud',
+}
 
 
 const VendorPage: React.FC = () => {
     return (
-        <div className='flex flex-col gap-5'>
-            <div>
-                <h1 className="text-3xl font-semibold text-foreground">Vendor Management</h1>
-                <p className="mt-1 text-base font-normal text-muted-foreground">
+        <div className='flex min-w-0 flex-col gap-4 sm:gap-5'>
+            <div className='space-y-1'>
+                <h1 className="text-2xl font-semibold text-foreground sm:text-3xl">Vendor Management</h1>
+                <p className="max-w-2xl text-sm font-normal text-muted-foreground sm:text-base">
                     Manage and control all vendor operations
                 </p>
             </div>

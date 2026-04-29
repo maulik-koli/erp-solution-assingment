@@ -8,10 +8,12 @@ import Icon from '@components/icons'
 
 interface NavSidebarProps {
     isOpen: boolean
+    isMobile: boolean
+    onClose: () => void
 }
 
 
-const NavSidebar: React.FC<NavSidebarProps> = ({ isOpen }) => {
+const NavSidebar: React.FC<NavSidebarProps> = ({ isOpen, isMobile, onClose }) => {
     const pathname = usePathname()
     const sidebar = getSidebarForPath(pathname)
 
@@ -22,15 +24,17 @@ const NavSidebar: React.FC<NavSidebarProps> = ({ isOpen }) => {
                     "fixed inset-0 z-30 bg-black/20 backdrop-blur-sm transition-opacity duration-300 md:hidden",
                     isOpen ? "opacity-100" : "pointer-events-none opacity-0",
                 )}
+                onClick={onClose}
             />
 
             <aside
                 className={cn(
-                    "fixed left-[60px] top-0 z-30 flex h-screen w-[220px] flex-col",
-                    "bg-card",
+                    "fixed top-0 z-30 flex h-screen flex-col bg-card",
                     "transition-transform duration-300 ease-in-out",
                     isOpen ? "translate-x-0" : "-translate-x-full",
+                    isMobile ? "left-16 w-[min(85vw,280px)]" : "left-16 w-55",
                 )}
+                style={isMobile ? undefined : { left: 64, width: 220 }}
             >
 
                 <div className="flex h-16 items-center gap-2.5 px-4">

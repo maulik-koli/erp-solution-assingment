@@ -16,7 +16,7 @@ const TaxSection: React.FC<TaxSectionProps> = ({ action }) => {
     
     
     return (
-        <div className='grid grid-cols-2 gap-6 py-6 px-2 overflow-y-auto'>
+        <div className='grid grid-cols-1 gap-4 py-4 px-1 sm:py-6 sm:px-2 md:grid-cols-2 md:gap-6 overflow-y-auto min-w-0'>
             <Controller
                 name='tax_id'
                 control={control}
@@ -26,7 +26,7 @@ const TaxSection: React.FC<TaxSectionProps> = ({ action }) => {
                         type='text'
                         label='Tax ID'
                         placeholder='Enter Tax ID'
-                        className='h-10 min-w-80'
+                        className='h-10 w-full min-w-0 sm:min-w-80'
                         errorMessage={fieldState.error?.message}
                     />
                 )}
@@ -46,7 +46,7 @@ const TaxSection: React.FC<TaxSectionProps> = ({ action }) => {
                     />
                 )}
             />
-            <div />
+            <div className='hidden md:block' />
             <Controller
                 name='tax_withholding_category'
                 control={control}

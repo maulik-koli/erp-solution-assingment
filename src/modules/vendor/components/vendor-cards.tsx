@@ -16,15 +16,15 @@ const VendorCards: React.FC = () => {
     // const { data, error, isLoading } = useGetVendorCount();
 
     return (
-        <div className='grid grid-cols-4 gap-5'>
+        <div className='grid grid-cols-1 gap-4 sm:grid-cols-2 xl:grid-cols-4 sm:gap-5'>
             {VENDOR_CARDS_DATA.map((card, index) => (
-                <div className='bg-card p-6 rounded-xl flex justify-between' key={card.label+index}>
+                <div className='flex justify-between rounded-xl bg-card p-5 sm:p-6' key={card.label+index}>
                     <div className='flex flex-col gap-2'>
-                        <span className='text-sm text-muted-foreground font-medium'>{card.label}</span>
-                        <span className='text-2xl text-foreground font-bold'>{card.count}</span>
+                        <span className='text-sm font-medium text-muted-foreground'>{card.label}</span>
+                        <span className='text-xl font-bold text-foreground sm:text-2xl'>{card.count}</span>
                     </div>
-                    <div className='bg-primary/5 h-12 w-12 rounded-xl flex items-center justify-center text-primary'>
-                        <Icon name={card.icon} className='size-5' strokeWidth={2} />
+                    <div className='flex h-11 w-11 items-center justify-center rounded-xl bg-primary/5 text-primary sm:h-12 sm:w-12'>
+                        <Icon name={card.icon} className='size-4 sm:size-5' strokeWidth={2} />
                     </div>   
                 </div>
             ))}

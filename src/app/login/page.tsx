@@ -1,7 +1,15 @@
 import React from 'react'
+import dynamic from 'next/dynamic'
 import { Metadata } from 'next';
-import LoginForm from '@modules/auth/components/login-form';
+import LoginFormSkeleton from '@modules/auth/components/login-form-skeleton';
 import LoginSideSection from '@modules/auth/components/login-side-sec';
+
+const LoginForm = dynamic(
+    () => import('@modules/auth/components/login-form'),
+    {
+        loading: () => <LoginFormSkeleton />,
+    },
+)
 
 export const metadata: Metadata = {
     title: 'Login | Sterling Cloud',
@@ -11,11 +19,11 @@ export const metadata: Metadata = {
 
 const LoginPage: React.FC = () => {
     return (
-        <div className='w-full min-h-screen flex bg-slate-50 dark:bg-background'>
-            <div className='flex-1 flex flex-col items-center justify-center p-8'>
+        <div className='w-full min-h-screen flex flex-col lg:flex-row bg-slate-50 dark:bg-background overflow-hidden'>
+            <div className='flex w-full flex-1 items-center justify-center px-4 py-8 sm:px-6 lg:px-8'>
                 <LoginForm />
             </div>
-            <div className='flex-1 p-4 hidden lg:flex flex-col'>
+            <div className='hidden w-full flex-1 flex-col p-4 lg:flex'>
                 <LoginSideSection />
             </div>
         </div>

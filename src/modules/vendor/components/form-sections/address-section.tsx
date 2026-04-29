@@ -13,9 +13,9 @@ const AddressSection: React.FC<AddressSectionProps> = ({ action }) => {
     const { control } = useFormContext<VendorFormType>();
 
     return (
-        <div className='flex flex-col gap-6 py-6 px-2 overflow-y-auto'>
+        <div className='flex flex-col gap-6 py-4 px-1 sm:py-6 sm:px-2 overflow-y-auto min-w-0'>
             <p className='font-semibold text-base'>Primary Address and Contact</p>
-            <div className='grid grid-cols-2 gap-6'>
+            <div className='grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6'>
                 <Controller
                     name='supplier_primary_address'
                     control={control}

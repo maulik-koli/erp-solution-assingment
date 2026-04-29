@@ -28,14 +28,14 @@ const OptionsSelector: React.FC<OptionsSelectorProps> = ({ type, excludeValues, 
     }, [data, error, isLoading, excludeValues])
 
 
-    if (isLoading) return <Skeleton className='h-16.5 min-w-80 rounded-lg' />
+    if (isLoading) return <Skeleton className='h-16.5 w-full min-w-0 rounded-lg sm:min-w-80' />
     if (error) return (
-        <div className='h-16.5 min-w-80 rounded-lg bg-muted text-destructive font-medium flex items-center justify-center'>
+        <div className='h-16.5 w-full min-w-0 rounded-lg bg-muted font-medium text-destructive flex items-center justify-center sm:min-w-80'>
             Unable to fetch {label || type}
         </div>
     )
     if (!data || !data.length) return (
-        <div className='h-16.5 min-w-80 rounded-lg bg-muted text-destructive font-medium flex items-center justify-center'>
+        <div className='h-16.5 w-full min-w-0 rounded-lg bg-muted font-medium text-destructive flex items-center justify-center sm:min-w-80'>
             No {label || type} found
         </div>
     )
@@ -47,7 +47,7 @@ const OptionsSelector: React.FC<OptionsSelectorProps> = ({ type, excludeValues, 
             value={value}
             label={label}
             options={options}
-            triggerClass='h-10! min-w-80'
+            triggerClass='h-10! w-full min-w-0 sm:min-w-80'
             itemClass='h-10!'
         />
     )
