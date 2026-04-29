@@ -46,18 +46,18 @@ const LoginForm: React.FC = () => {
 
 
     return (
-        <Card className="w-full max-w-sm px-2 py-6">
-            <CardHeader className='flex flex-col items-center'>
-                <CardTitle className="text-xl font-semibold">
+        <Card className="w-full max-w-md px-3 py-6 sm:px-4">
+            <CardHeader className='flex flex-col items-center px-0 text-center sm:px-6'>
+                <CardTitle className="text-lg font-semibold sm:text-xl">
                     Login to <span className="text-primary">Sterling Cloud</span>
                 </CardTitle>
-                <CardDescription className=''>
+                <CardDescription className='text-sm sm:text-base'>
                     Let&apos;s login into your account first
                 </CardDescription>
             </CardHeader>
-            <CardContent>
+            <CardContent className='px-0 sm:px-6'>
                 <form onSubmit={form.handleSubmit(onSubmit)}>
-                    <div className="flex flex-col gap-6">
+                    <div className="flex flex-col gap-5 sm:gap-6">
                         <Controller
                             control={form.control}
                             name='usr'
@@ -89,19 +89,21 @@ const LoginForm: React.FC = () => {
                                 />
                             )}
                         />
-                        <Button type="submit" disabled={isPending}>
+                        <Button type="submit" size='lg' disabled={isPending}>
                             Login
                         </Button>
                         <FieldSeparator>Or Sign in with</FieldSeparator>
-                        <div className='flex items-center w-full gap-2'>
-                            <Button variant='outline' type='button' className='flex-1 inline-flex justify-center' onClick={toastMessage}>
+                        <div className='flex w-full flex-col gap-3 sm:flex-row sm:gap-2'>
+                            <Button variant='outline' type='button' className='w-full h-11 flex items-center justify-center gap-3 sm:flex-1 hover:bg-secondary transition-colors' onClick={toastMessage}>
                                 <Icon name='google' className='size-5' />
+                                <span className='text-sm font-medium'>Google</span>
                             </Button>
-                            <Button variant='outline' type='button' className='flex-1 inline-flex justify-center' onClick={toastMessage}>
+                            <Button variant='outline' type='button' className='w-full h-11 flex items-center justify-center gap-3 sm:flex-1 hover:bg-secondary transition-colors' onClick={toastMessage}>
                                 <Icon name='facebook' className='size-5' />
+                                <span className='text-sm font-medium'>Facebook</span>
                             </Button>
                         </div>
-                        <div className="text-center text-sm text-muted-foreground">
+                        <div className="text-center text-xs text-muted-foreground sm:text-sm">
                             Don&apos;t have an account? <span onClick={toastMessage} className="text-primary cursor-pointer">Sign up</span>
                         </div>
                     </div>

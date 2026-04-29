@@ -20,18 +20,13 @@ const AccountSection: React.FC = () => {
         Array.isArray(errors.accounts) &&
         errors.accounts.some((err) => err?.message);
 
-    Log("AccountSection", {
-        hasCompanyError,
-        hadAccountError,
-    })
-
 
     return (
-        <div className='flex flex-col gap-6 py-6 px-2 overflow-y-auto'>
+        <div className='flex flex-col gap-6 py-4 px-1 sm:py-6 sm:px-2 overflow-y-auto min-w-0'>
             <p className='font-semibold text-base'>Default Accounts</p>
             <p className='font-medium text-sm'>Mention if non-standars payable account</p>
 
-            <div className='grid grid-cols-2 border rounded-xl overflow-hidden'>
+            <div className='grid grid-cols-1 border rounded-xl overflow-hidden md:grid-cols-2'>
                 <Controller
                     name="companies"
                     control={control}
@@ -93,7 +88,7 @@ const ListComponent: React.FC<ListComponentProps> = ({ onChange, value, label, i
 
 
     return (
-        <div className='flex flex-col border-r last:border-r-0'>
+        <div className='flex flex-col border-b last:border-b-0 md:border-r md:border-b-0 md:last:border-r-0'>
             <div className='px-4 py-3 font-medium text-sm border-b bg-muted/30'>
                 {label}
             </div>

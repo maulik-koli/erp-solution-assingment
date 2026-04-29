@@ -20,31 +20,31 @@ const VendorFilter: React.FC<VendorFilterProps> = ({ onSeachChnage, sortValue, o
     const [open, setOpen] = useState<boolean>(false);
 
     return (
-        <div className='flex items-center gap-3'>
+        <div className='flex flex-col gap-3 lg:flex-row lg:items-center'>
             <Input
                 leftIcon='Search'
                 placeholder='Search Vendors by supplier name...'
-                className='h-9'
+                className='h-9 w-full'
                 value={searchValue}
                 onChange={(e) => onSeachChnage(e.currentTarget.value)}
             />
-            <div className='flex items-center justify-center gap-2'>
+            <div className='flex flex-col gap-2 sm:flex-row sm:items-center'>
                 <SelectField
                     value={sortValue}
                     onChange={(val) => onSortChnage(val as VendorSort)}
                     placeholder='Select Sort'
                     options={VENDOR_SORT_OPTIONS}
-                    containerClass='h-9 min-w-50'
+                    containerClass='h-9 w-full sm:min-w-50'
                 />
                 <DialogComponent
                     trigger={
-                        <Button className='h-9'>Create Vendor</Button>
+                        <Button className='h-9 w-full sm:w-auto'>Create Vendor</Button>
                     }
                     open={open}
                     onOpenChange={(op) => setOpen(op)}
                     title="New Supplier"
                     description="Fill in the details below to create a new vendor in the system."
-                    className='w-[calc(100vw-16rem)]'
+                    className='w-[calc(100vw-1rem)] max-w-[calc(100vw-1rem)] sm:w-[calc(100vw-16rem)] sm:max-w-6xl'
                 >
                     <VendorForm onClose={setOpen} action='create' data={null} />
                 </DialogComponent>

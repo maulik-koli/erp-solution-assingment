@@ -16,8 +16,8 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
     const { control } = useFormContext<VendorFormType>();
 
     return (
-        <div className='flex flex-col py-6 px-2 overflow-y-auto'>
-            <div className='grid grid-cols-2 gap-6'>
+        <div className='flex flex-col gap-6 py-4 px-1 sm:py-6 sm:px-2 overflow-y-auto min-w-0'>
+            <div className='grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6'>
                 <Controller
                     name='supplier_name'
                     control={control}
@@ -27,7 +27,7 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
                             type='text'
                             label='Supplier Name'
                             placeholder='Enter Supplier Name'
-                            className='h-10 min-w-80'
+                            className='h-10 w-full min-w-0 sm:min-w-80'
                             errorMessage={fieldState.error?.message}
                         />
                     )}
@@ -55,7 +55,7 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
                             type='text'
                             label='Country'
                             placeholder='Enter Country'
-                            className='h-10 min-w-80'
+                            className='h-10 w-full min-w-0 sm:min-w-80'
                             errorMessage={fieldState.error?.message}
                         />
                     )}
@@ -70,14 +70,14 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
                             options={SUPPLIER_TYPES_OPTIONS}
                             placeholder='Select Supplier Type'
                             label='Supplier Type'
-                            triggerClass='h-10! min-w-80'
+                            triggerClass='h-10! w-full min-w-0 sm:min-w-80'
                             errorMessage={fieldState.error?.message}
                         />
                     )}
                 />
             </div>
-            <div className='mt-3 grid grid-cols-2 gap-x-6'>
-                <div />
+            <div className='grid grid-cols-1 gap-3 md:grid-cols-2 md:gap-x-6'>
+                <div className='hidden md:block' />
                 <Controller
                     name='is_transporter'
                     control={control}
@@ -92,7 +92,7 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
             </div>
             <div className='flex flex-col gap-6'>
                 <p className="text-base font-semibold">Defaults</p>
-                <div className="grid grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 gap-4 md:grid-cols-2 md:gap-6">
                     <Controller
                         name='default_currency'
                         control={control}
@@ -138,11 +138,12 @@ const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
                         )}
                     />
                     <div />
+                    <div className='hidden md:block' />
                     <Controller
                         name='is_internal_supplier'
                         control={control}
                         render={({ field }) => (
-                            <div className='bg-muted-foreground/5 rounded-lg p-3'>
+                            <div className='rounded-lg bg-muted-foreground/5 p-3'>
                                 <Switch
                                     checked={field.value === 1 ? true : false}
                                     onCheckedChange={(value) => field.onChange(value ? 1 : 0)}

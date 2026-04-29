@@ -5,8 +5,7 @@ import { showToast } from '@lib/sonner-toast';
 
 const queryClient = new QueryClient({
     queryCache: new QueryCache({
-        onError: (error: any, query) => {
-            console.log('Query Error:', {error, query});
+        onError: (error: any) => {;
             showToast.error(error?.message || 'Unable to fetch data');
         },
     }),

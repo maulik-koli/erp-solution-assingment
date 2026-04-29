@@ -3,7 +3,6 @@ import React, { useState } from 'react'
 import { useGetVendorList } from '../api/query'
 import { useDebounce } from '@hooks/use-debounce'
 import { VendorSort } from '../api/type'
-import { useToast } from '@hooks/use-toast'
 
 import { Card, CardContent, CardHeader } from '@ui/card'
 import VendorFilter from './vendor-filter'
@@ -11,15 +10,13 @@ import VendorTable from './vendor-table'
 import TableSkeleton from '@components/common/table-skeleton'
 import ErrorBlock from '@components/common/error-block'
 
-// there is 16 field in the vendor item
+// there is 15 field we want to show in the vendor table
 const VENDOR_TABLE_COLUMNS = 15
 
 
 const VendorContent: React.FC = () => {
     const [search, setSearch] = useState<string>("")
     const [sort, setSort] = useState<VendorSort | undefined>(undefined)
-    const [open, setOpen] = useState<boolean>(false);
-    const toast = useToast()
 
     const searchQuery = useDebounce(search, 500);
 

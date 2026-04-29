@@ -26,11 +26,11 @@ const DialogComponent: React.FC<DialogProps> = ({
                 {trigger}
             </DialogTrigger>
             <DialogContent className={className}>
-                <DialogHeader>
+                <DialogHeader className="pr-8 sm:pr-10">
                     <DialogTitle>{title}</DialogTitle>
                     {description && <DialogDescription>{description}</DialogDescription>}
                 </DialogHeader>
-                <div className="overflow-y-auto max-h-[calc(100vh-14rem)] p-1 custom-scrollbar">
+                <div className="overflow-y-auto max-h-[calc(100vh-11rem)] p-0.5 sm:p-1 custom-scrollbar">
                     {children}
                 </div>
             </DialogContent>

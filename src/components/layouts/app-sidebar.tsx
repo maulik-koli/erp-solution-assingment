@@ -16,14 +16,15 @@ import {
 export interface AppSidebarProps {
     isNavOpen: boolean
     onToggleNav: () => void
+    isMobile: boolean
 }
 
 
-const AppSidebar: React.FC<AppSidebarProps> = ({ isNavOpen, onToggleNav }) => {
+const AppSidebar: React.FC<AppSidebarProps> = ({ isNavOpen, onToggleNav, isMobile }) => {
     return (
         <>
             <IconRail isNavOpen={isNavOpen} onToggle={onToggleNav} />
-            <NavSidebar isOpen={isNavOpen} />
+            <NavSidebar isMobile={isMobile} isOpen={isNavOpen} onClose={onToggleNav} />
         </>
     )
 }
@@ -43,7 +44,7 @@ function IconRail({ onToggle }: IconRailProps) {
     return (
         <aside
             className={cn(
-                "fixed left-0 top-0 z-40 flex h-screen w-[60px] flex-col items-center",
+                "fixed left-0 top-0 z-40 flex h-screen w-16 flex-col items-center",
                 "border-r border-border bg-background py-4",
             )}
         >

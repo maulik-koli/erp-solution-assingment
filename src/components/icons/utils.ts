@@ -40,7 +40,16 @@ import {
     Trash2,
     Plus,
     PencilLine,
-    SunMoon
+    SunMoon,
+    XIcon,
+    ChevronRightIcon,
+    ChevronUpIcon,
+    ChevronDownIcon,
+    CircleCheckIcon,
+    InfoIcon,
+    TriangleAlertIcon,
+    OctagonXIcon,
+    Loader2Icon
 } from "lucide-react";
 
 import { CartIcon, FolderIcon, GraphIcon, MenuIcon, MoneyIcon, PackageIcon } from "./custom/sidebar-icon"
@@ -102,5 +111,14 @@ export const LUCIDE_ICON_MAP = {
     Trash2,
     Plus,
     PencilLine,
-    SunMoon
+    SunMoon,
+    XIcon,
+    ChevronRightIcon,
+    ChevronUpIcon,
+    ChevronDownIcon,
+    CircleCheckIcon,
+    InfoIcon,
+    TriangleAlertIcon,
+    OctagonXIcon,
+    Loader2Icon,
 }

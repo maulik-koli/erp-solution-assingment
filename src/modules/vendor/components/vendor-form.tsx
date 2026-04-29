@@ -89,7 +89,7 @@ const VendorForm: React.FC<VendorFormProps> = ({ onClose, action, data }) => {
             ) : (
                 <CardContent>
                     <Tabs defaultValue={DEFAULT_TAB}>
-                        <TabsList variant="line">
+                        <TabsList variant="line" className='flex gap-6'>
                             {VENDOR_FORM_TABS.map((tab) => (
                                 <TabsTrigger key={tab.value} value={tab.value}>
                                     {tab.label}

@@ -13,27 +13,27 @@ const LoginSideSection: React.FC = () => {
     }
 
     return (
-        <div className='w-full h-full flex flex-col justify-between bg-primary rounded-2xl p-10'>
-            <div className='flex-1 flex flex-col items-center justify-center gap-12'>
+        <div className='flex h-full w-full flex-col justify-between rounded-2xl bg-primary p-6 sm:p-8 lg:p-10'>
+            <div className='flex flex-1 flex-col items-center justify-center gap-8 lg:gap-12'>
                 <div className='flex flex-col items-center gap-3'>
-                    <h2 className='text-3xl text-center font-semibold text-primary-foreground'>
+                    <h2 className='text-2xl text-center font-semibold text-primary-foreground sm:text-3xl'>
                         Vendor Operations Management
                     </h2>
-                    <p className='text-sm max-w-105 text-center text-primary-foreground/80 leading-relaxed'>
+                    <p className='max-w-105 text-center text-sm leading-relaxed text-primary-foreground/80'>
                         Manage vendors, track payments, and streamline procurement processes within a unified enterprise platform.
                     </p>
                 </div>
                 
-                <div className='w-full max-w-2xl grid grid-cols-1 md:grid-cols-2 gap-4'>
+                <div className='grid w-full max-w-2xl grid-cols-1 gap-4 md:grid-cols-2'>
                     {LOGIN_SIDE_SECTION_DATA.map((item, index) => (
                         <div 
                             key={index} 
-                            className='flex flex-col gap-5 p-6 rounded-[1.25rem] bg-primary-foreground/10 border border-primary-foreground/10 hover:bg-primary-foreground/20 transition-all duration-300'
+                            className='flex flex-col gap-4 rounded-[1.25rem] border border-primary-foreground/10 bg-primary-foreground/10 p-5 transition-all duration-300 hover:bg-primary-foreground/20 sm:gap-5 sm:p-6'
                         >
-                            <div className='w-12 h-12 rounded-2xl bg-primary-foreground flex items-center justify-center text-primary shrink-0 shadow-sm'>
+                            <div className='flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl bg-primary-foreground text-primary shadow-sm'>
                                 <Icon name={item.icon} className='w-5 h-5' strokeWidth={2.5} />
                             </div>
-                            <p className='text-sm text-primary-foreground/90 font-medium leading-relaxed'>
+                            <p className='text-sm font-medium leading-relaxed text-primary-foreground/90'>
                                 {item.text}
                             </p>
                         </div>
@@ -41,9 +41,9 @@ const LoginSideSection: React.FC = () => {
                 </div>
             </div>
 
-            <div className='flex justify-between items-center text-primary-foreground/70 text-xs w-full mt-8'>
+            <div className='mt-8 flex w-full flex-col items-start justify-between gap-3 text-xs text-primary-foreground/70 sm:flex-row sm:items-center sm:gap-4'>
                 <p>© 2026 Sterling Cloud. All rights reserved.</p>
-                <div className='flex items-center gap-3'>
+                <div className='flex flex-wrap items-center gap-3'>
                     <p
                         onClick={toastMessage}
                         className='hover:text-primary-foreground transition-colors cursor-pointer'
