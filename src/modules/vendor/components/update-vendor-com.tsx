@@ -32,7 +32,7 @@ const UpdateVendorComponent: React.FC<UpdateVendorComponentProps> = ({ data }) =
             onOpenChange={(op) => setOpen(op)}
             title="Update Supplier"
             description="Fill in the details below to update the vendor information."
-            className='w-[calc(100vw-16rem)]'
+            className='w-[calc(100vw-12rem)]'
         >
             <VendorForm onClose={setOpen} action='update' data={data} />
         </DialogComponent>

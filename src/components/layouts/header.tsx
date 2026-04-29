@@ -1,7 +1,15 @@
 "use client"
 import React from "react"
-import Icon from "@/components/icons"
+import Image from "next/image"
+import { useRouter } from "next/navigation"
+import { useLogout } from "@modules/auth/api/mutation"
+import { useToast } from "@hooks/use-toast"
 import { cn } from "@/lib/utils"
+
+import Icon from "@/components/icons"
+import Dropdown from "@components/common/dropdown"
+import { useTheme } from "next-themes"
+
 
 export interface HeaderProps {
     sidebarOffset: number
@@ -9,6 +17,30 @@ export interface HeaderProps {
 
 
 const Header: React.FC<HeaderProps> = ({ sidebarOffset }) => {
+    const { mutate, isPending } = useLogout()
+    const { resolvedTheme, setTheme } = useTheme()
+    const toast = useToast();
+    const router = useRouter();
+    
+    const handleLogout = () => {
+        mutate(undefined, {
+            onSuccess: () => {
+                router.push("/login");
+            }
+        })
+    }
+
+    const handleDarkModeToggle = () => {
+        setTheme(resolvedTheme === "dark" ? "light" : "dark")
+    }
+
+    const toastMessage = () => {
+        toast.info("This feature is not available yet.")
+    }
+
+    toast.isLoading(isPending, "Logging out...")
+
+
     return (
         <header
             className={cn(
@@ -18,28 +50,48 @@ const Header: React.FC<HeaderProps> = ({ sidebarOffset }) => {
             )}
             style={{ left: `${sidebarOffset}px` }}
         >
-            <button
-                className={cn(
-                    "flex items-center gap-2.5 rounded-lg px-2 py-1.5",
-                    "transition-colors hover:bg-accent",
-                )}
-            >
-
-                <div className="flex size-8 items-center justify-center rounded-full bg-primary/10">
-                    <Icon name="User" className="size-4 text-primary" />
-                </div>
-
-                <div className="hidden flex-col items-start md:flex">
-                    <span className="text-sm font-medium leading-tight text-foreground">
-                        Robbi Darwis
-                    </span>
-                    <span className="text-[11px] leading-tight text-primary">
-                        Admin
-                    </span>
-                </div>
-
-                <Icon name="ChevronDown" className="size-3.5 text-muted-foreground" />
-            </button>
+            <Dropdown
+                
+                trigger={
+                    <div
+                        className={cn(
+                            "flex items-center gap-2.5 rounded-lg px-2 py-1.5",
+                            "transition-colors hover:bg-accent",
+                        )}
+                    >
+                        <div className="relative flex size-9 items-center justify-center rounded-full bg-primary/10">
+                            <Image src="/avatar.jpg" fill alt="User" className="size-4 text-primary rounded-full" />
+                        </div>
+                        <div className="hidden flex-col items-start md:flex">
+                            <span className="text-sm font-medium leading-tight text-foreground">
+                                Robbi Darwis
+                            </span>
+                            <span className="text-[11px] leading-tight text-primary">
+                                Admin
+                            </span>
+                        </div>
+                        <Icon name="ChevronDown" className="size-3.5 text-muted-foreground" />
+                    </div>
+                }
+                items={[
+                    {
+                        label: "Profile",
+                        icon: "User",
+                        onClick: toastMessage,
+                    },
+                    {
+                        label: "Theme",
+                        icon: "SunMoon",
+                        onClick: handleDarkModeToggle,
+                        isSeparator: true
+                    },
+                    {
+                        label: "Logout",
+                        icon: "LogOut",
+                        onClick: handleLogout,
+                    },
+                ]}
+            />
         </header>
     )
 }

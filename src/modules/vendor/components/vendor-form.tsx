@@ -79,7 +79,7 @@ const VendorForm: React.FC<VendorFormProps> = ({ onClose, action, data }) => {
         );
     }, [errors]);
 
-    toast.isLoading(isPending, "Creating vendor...");
+    toast.isLoading(isPending, "Submitting vendor...");
 
 
     return (
