@@ -1,8 +1,9 @@
 import api from "@lib/axios";
 import qs from "qs";
 import { ApiResponse } from "@/types/api-type";
-import { MutateVendorResponse, CreateVendorPayload, OptionsItemsResponse, SearchLinkOptionKey, UpdateVendorPayload, VendorListParams, VendorsListAPIResponse, VendorsListResponse } from "./type";
+import { MutateVendorResponse, CreateVendorPayload, OptionsItemsResponse, SearchLinkOptionKey, UpdateVendorPayload, VendorListParams, VendorsListAPIMessage, VendorsListResponse } from "./type";
 import { SEACH_LINK_PAYLOAD_MAP } from "./utils";
+import { Log } from "@lib/utils";
 
 
 export const getVendorList = async ({ search, sort, limit, start }: VendorListParams): Promise<VendorsListResponse> => {
@@ -67,10 +68,20 @@ export const getVendorList = async ({ search, sort, limit, start }: VendorListPa
         page_length: limit || 20,
     });
 
-    const res = await api.post<ApiResponse<VendorsListAPIResponse>>(
+    const res = await api.post<ApiResponse<VendorsListAPIMessage>>(
         "/api/method/frappe.desk.reportview.get",
         payload
     );
+
+    Log('Vendor List API Response:', res.data);
+
+    if (!res.data.message || Array.isArray(res.data.message)) {
+        return [];
+    }
+
+    if (!Array.isArray(res.data.message.keys) || !Array.isArray(res.data.message.values)) {
+        throw new Error("Invalid response format");
+    }
 
     const { keys, values } = res.data.message;
 
