@@ -1,9 +1,16 @@
 'use client'
 import React from 'react'
-import { MutationCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
+import { MutationCache, QueryCache, QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { showToast } from '@lib/sonner-toast';
 
 const queryClient = new QueryClient({
+    queryCache: new QueryCache({
+        onError: (error: any, query) => {
+            console.log('Query Error:', {error, query});
+            showToast.error(error?.message || 'Unable to fetch data');
+        },
+    }),
+
     mutationCache: new MutationCache({
         onSuccess: (_data, _variables, _context, mutation) => {
             showToast.success(mutation.meta?.successMessage as string);

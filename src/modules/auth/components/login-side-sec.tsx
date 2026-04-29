@@ -1,9 +1,17 @@
+'use client'
 import React from 'react'
 import Icon from '@/components/icons'
 import { LOGIN_SIDE_SECTION_DATA } from '@/constant/static-data'
+import { useToast } from '@hooks/use-toast'
 
 
 const LoginSideSection: React.FC = () => {
+    const toast = useToast();
+
+    const toastMessage = () => {
+        toast.info("This page is not available yet.")
+    }
+
     return (
         <div className='w-full h-full flex flex-col justify-between bg-primary rounded-2xl p-10'>
             <div className='flex-1 flex flex-col items-center justify-center gap-12'>
@@ -11,7 +19,7 @@ const LoginSideSection: React.FC = () => {
                     <h2 className='text-3xl text-center font-semibold text-primary-foreground'>
                         Vendor Operations Management
                     </h2>
-                    <p className='text-sm max-w-[420px] text-center text-primary-foreground/80 leading-relaxed'>
+                    <p className='text-sm max-w-105 text-center text-primary-foreground/80 leading-relaxed'>
                         Manage vendors, track payments, and streamline procurement processes within a unified enterprise platform.
                     </p>
                 </div>
@@ -36,9 +44,19 @@ const LoginSideSection: React.FC = () => {
             <div className='flex justify-between items-center text-primary-foreground/70 text-xs w-full mt-8'>
                 <p>© 2026 Sterling Cloud. All rights reserved.</p>
                 <div className='flex items-center gap-3'>
-                    <a href='#' className='hover:text-primary-foreground transition-colors'>Privacy Policy</a>
+                    <p
+                        onClick={toastMessage}
+                        className='hover:text-primary-foreground transition-colors cursor-pointer'
+                    >
+                        Privacy Policy
+                    </p>
                     <span className='opacity-50 text-[10px]'>•</span>
-                    <a href='#' className='hover:text-primary-foreground transition-colors'>Terms & Conditions</a>
+                    <p
+                        onClick={toastMessage}
+                        className='hover:text-primary-foreground transition-colors cursor-pointer'
+                    >
+                        Terms & Conditions
+                    </p>
                 </div>
             </div>
         </div>

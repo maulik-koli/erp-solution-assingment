@@ -46,7 +46,7 @@ const OptionsSelector: React.FC<OptionsSelectorProps> = ({ type, excludeValues, 
             {...props}
             value={value}
             label={label}
-            options={[...options, { value: "test value", label: "test value" }]}
+            options={options}
             triggerClass='h-10! min-w-80'
             itemClass='h-10!'
         />

@@ -16,7 +16,9 @@ import {
     CardTitle,
 } from "@ui/card"
 import { Button } from '@ui/button'
+import { FieldSeparator } from '@ui/field'
 import Input from '@form/input'
+import Icon from '@components/icons'
 
 
 const LoginForm: React.FC = () => {
@@ -34,6 +36,10 @@ const LoginForm: React.FC = () => {
                 router.push(DEFAULT_ROUTE);
             }
         })
+    }
+
+    const toastMessage = () => {
+        toast.info("This feature is not available yet.")
     }
 
     toast.isLoading(isPending, "Login...")
@@ -86,9 +92,18 @@ const LoginForm: React.FC = () => {
                         <Button type="submit" disabled={isPending}>
                             Login
                         </Button>
-                        <span className="text-center text-sm text-muted-foreground">
-                            Don&apos;t have an account? <a href="#" className="text-primary">Sign up</a>
-                        </span>
+                        <FieldSeparator>Or Sign in with</FieldSeparator>
+                        <div className='flex items-center w-full gap-2'>
+                            <Button variant='outline' type='button' className='flex-1 inline-flex justify-center' onClick={toastMessage}>
+                                <Icon name='google' className='size-5' />
+                            </Button>
+                            <Button variant='outline' type='button' className='flex-1 inline-flex justify-center' onClick={toastMessage}>
+                                <Icon name='facebook' className='size-5' />
+                            </Button>
+                        </div>
+                        <div className="text-center text-sm text-muted-foreground">
+                            Don&apos;t have an account? <span onClick={toastMessage} className="text-primary cursor-pointer">Sign up</span>
+                        </div>
                     </div>
                 </form>
             </CardContent>

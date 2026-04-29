@@ -40,10 +40,12 @@ import {
     Trash2,
     Plus,
     PencilLine,
+    SunMoon
 } from "lucide-react";
 
 import { CartIcon, FolderIcon, GraphIcon, MenuIcon, MoneyIcon, PackageIcon } from "./custom/sidebar-icon"
 import { LogoIcon } from "./custom/logo";
+import { FacebookIcon, GoogleIcon } from "./custom/login-icons";
 
 export const CUSTOM_ICON_MAP = {
     logo: LogoIcon,
@@ -53,6 +55,8 @@ export const CUSTOM_ICON_MAP = {
     money: MoneyIcon,
     package: PackageIcon,
     cart: CartIcon,
+    google: GoogleIcon,
+    facebook: FacebookIcon,
 }
 
 
@@ -97,5 +101,6 @@ export const LUCIDE_ICON_MAP = {
     CheckIcon,
     Trash2,
     Plus,
-    PencilLine
+    PencilLine,
+    SunMoon
 }

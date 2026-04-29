@@ -27,6 +27,7 @@ export default function RootLayout({
     <html
       lang="en"
       className='h-full antialiased'
+      suppressHydrationWarning
     >
       <body className={cn(inter.className, "min-h-full flex flex-col")}>
         <AppProvider>

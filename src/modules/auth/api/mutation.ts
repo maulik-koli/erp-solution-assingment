@@ -2,9 +2,9 @@ import { useMutation } from "@tanstack/react-query";
 import { MutationOptionsAPI } from "@/types/api-type";
 import { MUTATION_REGISTRY } from "@constant/api-registrary";
 
-import { LoginResponse } from "./type";
+import { LoginResponse, LogoutResponse } from "./type";
 import { LoginFormType } from "../utils/schemas";
-import { login } from "./api";
+import { login, logout } from "./api";
 
 
 export const useLogin = (
@@ -16,6 +16,21 @@ export const useLogin = (
         meta: {
             successMessage: "Login Successfully",
             errorMessage: "Login Failed",
+        },
+        ...options,
+    });
+};
+
+
+export const useLogout = (
+    options?: MutationOptionsAPI<LogoutResponse, void>
+) => {
+    return useMutation({
+        mutationKey: [MUTATION_REGISTRY.logout],
+        mutationFn: () => logout(),
+        meta: {
+            successMessage: "Logout Successfully",
+            errorMessage: "Logout Failed",
         },
         ...options,
     });
