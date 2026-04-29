@@ -4,7 +4,7 @@ import { Skeleton } from "@/components/ui/skeleton"
 const LoadingPage: React.FC = () => {
     return (
         <div className="min-h-screen bg-background px-4 py-6 sm:px-6 lg:px-8">
-            <div className="mx-auto flex w-full max-w-6xl flex-col gap-6">
+            <div className="mx-auto flex w-full flex-col gap-6">
                 <div className="flex items-center justify-between rounded-2xl border border-border/60 bg-card/80 px-4 py-4 shadow-sm backdrop-blur sm:px-6">
                     <div className="flex items-center gap-3">
                         <Skeleton className="size-10 rounded-full" />

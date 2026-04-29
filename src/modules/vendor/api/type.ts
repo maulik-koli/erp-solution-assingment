@@ -22,7 +22,9 @@ export type VendorsListAPIResponse = {
     keys: string[],
     values: Array<Array<string | number | null>>,
     user_info: Record<any, any>,
-}
+};
+
+export type VendorsListAPIMessage = VendorsListAPIResponse | [];
 
 export type VendorListItem = {
     name: string;
