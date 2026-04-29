@@ -1,13 +1,18 @@
 import React from 'react'
 import { Controller, useFormContext } from 'react-hook-form'
 import { VendorFormType } from '@modules/vendor/utils/schemas';
+import { VendorMutateType } from '@modules/vendor/api/type';
 import { SUPPLIER_TYPES_OPTIONS } from '@constant/select-options';
 
 import OptionsSelector from '../optoins-selector';
 import { Input, SelectField, Checkbox, Switch } from '@form/index';
 
+interface DetailsSectionProps {
+    action: VendorMutateType
+}
 
-const DetailsSection: React.FC = () => {
+
+const DetailsSection: React.FC<DetailsSectionProps> = ({ action }) => {
     const { control } = useFormContext<VendorFormType>();
 
     return (
@@ -113,6 +118,7 @@ const DetailsSection: React.FC = () => {
                                 placeholder='Select Price List'
                                 label='Price List'
                                 errorMessage={fieldState.error?.message}
+                                disabled={action === "update"}
                             />
                         )}
                     />
@@ -127,6 +133,7 @@ const DetailsSection: React.FC = () => {
                                 placeholder='Select Company Bank Account'
                                 label='Default Company Bank Account'
                                 errorMessage={fieldState.error?.message}
+                                disabled={action === "update"}
                             />
                         )}
                     />

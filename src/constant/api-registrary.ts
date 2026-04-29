@@ -8,5 +8,5 @@ export const QUERY_REGISTRY = {
 
 export const MUTATION_REGISTRY = {
     login: "login",
-    createVendor: "create-vendor",
+    mutateVendor: "mutate-vendor",
 }

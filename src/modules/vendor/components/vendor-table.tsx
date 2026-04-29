@@ -1,15 +1,17 @@
 'use client'
-import React, { useState } from 'react'
+import React, { useMemo, useState } from 'react'
 import {
+    type ColumnDef,
     flexRender,
     getCoreRowModel,
     getSortedRowModel,
     useReactTable,
     type SortingState,
 } from '@tanstack/react-table'
-import { VendorsListResponse } from '../api/type'
-import { vendorColumns } from '../utils/get-vendor-columns'
+import { VendorListItem, VendorsListResponse } from '../api/type'
+import { createVendorColumns } from '@modules/vendor/utils/get-vendor-columns'
 import { cn } from '@lib/utils'
+
 import {
     Table,
     TableBody,
@@ -18,6 +20,7 @@ import {
     TableHeader,
     TableRow,
 } from '@ui/table'
+import UpdateVendorComponent from './update-vendor-com'
 
 interface VendorTableProps {
     vendors: VendorsListResponse
@@ -26,10 +29,25 @@ interface VendorTableProps {
 
 const VendorTable: React.FC<VendorTableProps> = ({ vendors }) => {
     const [sorting, setSorting] = useState<SortingState>([])
+    const columns = useMemo<ColumnDef<VendorListItem>[]>(() => {
+        const baseColumns = createVendorColumns()
+
+        const actionsColumn: ColumnDef<VendorListItem> = {
+            id: 'actions',
+            header: 'Action',
+            enableSorting: false,
+            meta: { className: 'w-28 min-w-[112px]' },
+            cell: ({ row }) => (
+                <UpdateVendorComponent data={row.original} />
+            ),
+        }
+
+        return [...baseColumns, actionsColumn]
+    }, [])
 
     const table = useReactTable({
         data: vendors,
-        columns: vendorColumns,
+        columns,
         getCoreRowModel: getCoreRowModel(),
         getSortedRowModel: getSortedRowModel(),
         onSortingChange: setSorting,
@@ -104,7 +122,7 @@ const VendorTable: React.FC<VendorTableProps> = ({ vendors }) => {
                     ) : (
                         <TableRow>
                             <TableCell
-                                colSpan={vendorColumns.length}
+                                colSpan={columns.length}
                                 className="h-24 text-center text-muted-foreground"
                             >
                                 No results.

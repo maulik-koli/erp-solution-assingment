@@ -1,14 +1,15 @@
-import { VendorStatus, SupplierType } from "@/types/enums";
+import { SupplierType, VendorSort } from "@modules/vendor/api/type"
 
 type OptionsType<T> = {
     label: string,
     value: T
 }[]
 
-export const VENDOR_STATUS_OPTIONS: OptionsType<VendorStatus> = [
-    { label: "All", value: "all" },
-    { label: "Active", value: "active" },
-    { label: "Disabled", value: "disabled" },
+export const VENDOR_SORT_OPTIONS: OptionsType<VendorSort> = [
+    { label: "Last Modified (Newest)", value: "modified desc" },
+    { label: "Last Modified (Oldest)", value: "modified asc" },
+    { label: "Name (A → Z)", value: "supplier_name asc" },
+    { label: "Name (Z → A)", value: "supplier_name desc" },
 ]
 
 

@@ -1,13 +1,21 @@
-import { VendorStatus } from "@/types/enums";
 import { VendorFormType } from "../utils/schemas";
 
+
 export type VendorTabs = 'details' | 'tax' | 'address' | 'account'
+
+export type SupplierType = "Individual" | "Company" | "Partnership"
+
+export type VendorSort = "modified desc" | "modified asc" | "supplier_name asc" | "supplier_name desc"
+
+export type VendorMutateType = 'create' | 'update'
 
 
 
 export type VendorListParams = {
-    search: string,
-    status: VendorStatus
+    search?: string,
+    sort?: string,
+    start?: number,
+    limit?: number,
 }
 
 export type VendorsListAPIResponse = {
@@ -22,17 +30,43 @@ export type VendorListItem = {
     creation: string;
     modified: string;
     modified_by: string;
-    _user_tags: string | null;
-    _comments: string | null;
-    _assign: string | null;
-    _liked_by: string | null;
     docstatus: number;
     idx: number;
-    supplier_group: string;
-    supplier_name: string;
-    image: string | null;
-    on_hold: 0 | 1;
     disabled: 0 | 1;
+
+    naming_series: string;
+
+    supplier_name: string;
+    supplier_group: string;
+    country: string;
+    supplier_type: string;
+    is_transporter: 0 | 1;
+    default_currency: string;
+    default_price_list: string;
+    default_bank_account: string | null;
+    is_internal_supplier: 0 | 1;
+
+    represents_company: string | null;
+    supplier_details: string | null;
+    website: string | null;
+    language: string | null;
+
+    tax_id: string | null;
+    tax_category: string | null;
+    tax_withholding_category: string | null;
+
+    supplier_primary_address: string | null;
+    supplier_primary_contact: string | null;
+
+    allow_purchase_invoice_creation_without_purchase_order: 0 | 1;
+    allow_purchase_invoice_creation_without_purchase_receipt: 0 | 1;
+    is_frozen: 0 | 1;
+    warn_rfqs: 0 | 1;
+    warn_pos: 0 | 1;
+    prevent_rfqs: 0 | 1;
+    prevent_pos: 0 | 1;
+    on_hold: 0 | 1;
+    hold_type: string;
 };
 
 export type VendorsListResponse = VendorListItem[]
@@ -64,8 +98,13 @@ export type OptionsItemsResponse = {
 
 // ---------- Mutation APIs ----------
 
+type MutateVendorForm = Omit<VendorFormType, "companies" | "accounts"> & {
+    companies: { company: string, doctype: 'Supplier Company' }[],
+    accounts: { account: string, doctype: 'Supplier Account' }[],
+}
+
 export type CreateVendorPayload = {
-    doc: VendorFormType & {
+    doc: MutateVendorForm & {
         doctype: "Supplier",
         __unsaved: 1
     },
@@ -73,16 +112,49 @@ export type CreateVendorPayload = {
 }
 
 
-export type UpdateVendorPayload = VendorFormType & {
-    doctype: "Supplier",
-    name: string,
-    modified: string,
-}
+export type UpdateVendorPayload = {
+    doc: MutateVendorForm & {
+        doctype: "Supplier";
+        name: string;
+        modified: string;
+
+        owner: string;
+        modified_by: string;
+        docstatus: number;
+        idx: number;
+        naming_series: string;
+        creation: string;
+
+        disabled: 0 | 1;
+        represents_company?: string | null;
+        supplier_details?: string | null;
+        website?: string | null;
+        language?: string | null;
+        allow_purchase_invoice_creation_without_purchase_order?: 0 | 1;
+        allow_purchase_invoice_creation_without_purchase_receipt?: 0 | 1;
+        is_frozen?: 0 | 1;
+        warn_rfqs?: 0 | 1;
+        warn_pos?: 0 | 1;
+        prevent_rfqs?: 0 | 1;
+        prevent_pos?: 0 | 1;
+        on_hold?: 0 | 1;
+        hold_type?: string;
+        portal_users?: any[];
+        __onload?: {
+            addr_list: any[];
+            contact_list: any[];
+            dashboard_info: any[];
+        };
+        __unsaved: 0;
+    };
+    action: "Save";
+};
+
 
 
 // ---------- Mutation Response ---------
 
-export interface CreateSupplierResponse {
+export interface MutateVendorResponse {
     docs: SupplierDoc[];
     docinfo: SupplierDocInfo;
     _server_messages: string;
