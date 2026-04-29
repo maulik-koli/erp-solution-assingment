@@ -3,7 +3,7 @@ import React from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 import { cn } from "@/lib/utils"
-import { RAIL_ITEMS, getRailHref } from "@constant/nav-routes"
+import { RAIL_ITEMS } from "@constant/nav-routes"
 
 import NavSidebar from "./nav-sidebar"
 import Icon from '@components/icons'
@@ -61,12 +61,12 @@ function IconRail({ onToggle }: IconRailProps) {
 
             <nav className="flex flex-1 flex-col items-center gap-1">
                 {RAIL_ITEMS.map((item) => {
-                    const isActive = item.href === "/" ? pathname === "/" : pathname.startsWith(item.href)
+                    const isActive = item.isSelected && pathname === '/'
                     return (
-                        <Tooltip key={item.href}>
+                        <Tooltip key={item.label + item.icon}>
                             <TooltipTrigger asChild>
                                 <Link
-                                    href={getRailHref(item.href)}
+                                    href="#"
                                     className={cn(
                                         "flex size-10 items-center justify-center rounded-xl transition-all duration-200",
                                         isActive
