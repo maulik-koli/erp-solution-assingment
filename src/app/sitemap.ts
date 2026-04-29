@@ -4,7 +4,7 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3100"
 
 const routes = [
     "/login",
-    "/purchase/vendor",
+    "/",
 ]
 
 export default function sitemap(): MetadataRoute.Sitemap {

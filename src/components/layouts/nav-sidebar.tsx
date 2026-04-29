@@ -3,7 +3,7 @@ import React from 'react'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { cn } from '@lib/utils'
-import { getSidebarForPath } from '@constant/nav-routes'
+import { SIDEBAR_ROUTES } from '@constant/nav-routes'
 import Icon from '@components/icons'
 
 interface NavSidebarProps {
@@ -15,7 +15,7 @@ interface NavSidebarProps {
 
 const NavSidebar: React.FC<NavSidebarProps> = ({ isOpen, isMobile, onClose }) => {
     const pathname = usePathname()
-    const sidebar = getSidebarForPath(pathname)
+    const sidebar = pathname === '/' ? SIDEBAR_ROUTES[pathname] : null
 
     return (
         <>
@@ -57,11 +57,11 @@ const NavSidebar: React.FC<NavSidebarProps> = ({ isOpen, isMobile, onClose }) =>
 
                             <ul className="flex flex-col gap-0.5">
                                 {sidebar.items.map((item) => {
-                                    const isActive = item.href === "/" ? pathname === "/" : pathname === item.href;
+                                    const isActive = item.isSelected && pathname === '/'
                                     return (
-                                        <li key={item.href}>
+                                        <li key={item.label+item.icon}>
                                             <Link
-                                                href={item.href}
+                                                href="#"
                                                 className={cn(
                                                     "flex items-center gap-2.5 rounded-lg px-4 py-3 text-[13px] transition-all duration-150",
                                                     isActive
